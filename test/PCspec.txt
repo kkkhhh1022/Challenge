@@ -1,0 +1,3 @@
+OS:Windows7 Professional 32bit
+CPU:Intel Core i3-4000M @2.40GHz
+ƒƒ‚ƒŠ:4096MB RAM
