@@ -15,11 +15,29 @@ echo AGE."歳です<br/>";
 //課題3
 
 $n1 = 9;
-$n2 = 5;
-const N1 = 3;
-const N2 = 6;
-$n1 = $n1 + N2;
-$n2 = $n2 * N2;
-echo $n1.'と'.$n2;
+const N2 = 3;
+
+$calc1 = $n1 + N2; 
+$calc2 = $n1 - N2;
+$calc3 = $n1 * N2;
+$calc4 = $n1 / N2;
+echo $calc1.'と'.$calc2.'と'.$calc3.'と'.$calc4;
 //課題4と5
 
+echo '<br/>';
+
+$i = 1;
+
+if($i == 1){
+	echo '1です';
+
+}elseif($i == 2){
+	echo 'プログラミングキャンプ！';
+
+}elseif($i == 3){
+	echo '文字です';
+
+}else{
+	echo'それ以外です';
+}
+//課題6
