@@ -6,12 +6,10 @@ $input = isset($_POST['input']) ? $_POST['input'] : "";		//入力された数値
 $answer = isset($_POST['answer']) ? $_POST['answer'] : "";  	//計算結果の値が保持される
 $output = isset($_POST['output']) ? $_POST['output'] : "";	//計算フォームに表示するための値。数字と計算記号が組み合わさって保持される
 $log = isset($_POST['log']) ? $_POST['log'] : "";		//計算ログが保持される
-
 //もし「=」が押されたら計算式をログとして表示
 if($pushed == "＝" && $operator != "＝") {
   $log .= $answer . $operator . $input;
 }
-
 if($pushed == "C"){
 	$pushed = "";
 	$operator = "";
@@ -21,8 +19,6 @@ if($pushed == "C"){
 	$log = "";
 	}
 //もしCが押されたら各種変数をリセット
-
-
 //数字か計算記号、もしくは「＝」かで判別
 if(is_numeric($pushed)) {
   //もし数字が続けて押されたら、その数字を次の桁にする
@@ -45,7 +41,7 @@ if(is_numeric($pushed)) {
       } else {
         $answer = "error";
       }
-    } elseif ($pushed == "税込み"){
+    } elseif ($pushed == "税込み"){ 
 		$answer = (int)$input * 1.08;
 	} elseif ($pushed == "税抜き"){
 		$answer = (int)$input / 1.08;
@@ -59,14 +55,12 @@ if(is_numeric($pushed)) {
   $input = "";    //記号が連続でおされても上記の計算自体は行われるが、計算用の数値は空なので何も起こらない
   $operator = $pushed;//押されたボタンの記号を保持。これによりもう一度計算記号が出現したときに計算が実行できる
 }
-
 if($pushed == "税込み" or $pushed == "税抜き" ){
-	$operator = "=";
+	$operator = "＝";
 	$input = $answer;
 }
 //税の計算をする場合のみ、計算記号を保持するための変数を上書きして表示条件を満たす。
 //また、計算後の値を引き続き操作できるように、inputの値も上書きする。
-
 //計算フォームにどんな文字を出すのかはここで決定。計算記号が出現したかそうでないかで判別
 if($operator == "") {
   //最初に入力する数字部分を表示するように設定。「○○」だけ。まだ○の桁数が増える余地がある
@@ -75,16 +69,14 @@ if($operator == "") {
  //計算結果を表示「☆☆」
   $output = $answer;
   $operator = "";//計算が行われたので計算記号を初期化
-  $log .=  "＝" . $answer . "<br>";
-} elseif($pushed == "税込み" or $pushed == "税抜き"){ //この分岐があると、なぜか"="があまらない
-  $output = $answer;
-  $operator = "";//計算が行われたので計算記号を初期化
   if($pushed == "税込み"){
-  $log .= "税込み". "＝" . $answer . "<br>";
-  }else{
+  	$log .= "税込み". "＝" . $answer . "<br>";
+  }elseif($pushed =- "税抜き"){
   	$log .= "税抜き". "＝" . $answer . "<br>";
+  }else{
+  $log .=  "＝" . $answer . "<br>";
+  $input = $answer;//計算結果に対して税率計算できるようにするためにinputを保持
   }
-
 }elseif($pushed == "％"){
 	$output = $answer . $input;
 	
@@ -92,8 +84,6 @@ if($operator == "") {
  //記号でくっついた計算途中式を表示「○○÷□□」まだ□の桁数が増える余地がある
   $output = $answer . $operator . $input;
 }
-
-
 ?>
 
 
@@ -149,6 +139,4 @@ if($operator == "") {
     <p><?php echo $log; ?></p>
   </body>
 </html>
-
-
 
