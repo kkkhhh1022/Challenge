@@ -1,10 +1,10 @@
 <?php
 
 function userdata($id){
-	$user111 = array('name' => "wakasa",'birth' => "1129",'address' => "tokyo");
-	$user222 = array('name' => "akiyama",'birth' => "0606",'address' => "ibaraki");
-	$user333 = array('name' => "ansai",'birth' => "0923",'address' => "tochigi");
-	
+	$user111 = array('id' => "111",'name' => "wakasa",'birth' => "1129",'address' => "tokyo");
+	$user222 = array('id' => "222",'name' => "akiyama",'birth' => "0606",'address' => "ibaraki");
+	$user333 = array('id' => "333",'name' => "ansai",'birth' => "0923",'address' => "tochigi");
+	//idのkeyを追加
 	if($id == "111"){
 		$result = $user111;
 	}
