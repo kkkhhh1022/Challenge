@@ -15,13 +15,14 @@ $today = date ('Y/m/d_H:i:s');
 $txtname = $_POST['txtName'];
 $rdosample = $_POST['rdoSample'];
 $txtmul = $_POST['mulText'];
+setcookie('lastlogin',$today);
+//setcookieの位置を修正
 
 echo $txtname."<br/>".$rdosample."<br/>".$txtmul."<br/>";
 
 if($_COOKIE['lastlogin'] != null){
 	echo '前回のログインは'.$_COOKIE['lastlogin'];
 }	
-setcookie('lastlogin',$today);
 
 ?>
 
