@@ -6,16 +6,16 @@
 </head>
 <body>
 <?php
+
+try{
+	$pdo_object= new PDO('mysql:host=localhost;dbname=challenge_db;charset=sjis','ゆーざー','ぱす');
+}catch(PDOException $Exception){
+	die('接続に失敗しました:'.$Exception->getMessage());
+}
+
 session_start();
-if(isset($_SESSION)){
-	try{
-	
-		$pdo_object= new PDO('mysql:host=localhost;dbname=challenge_db;charset=sjis','ゆーざー','ぱす');
-	
-	}catch(PDOException $Exception){
-	
-		die('接続に失敗しました:'.$Exception->getMessage());
-	}
+if(isset($_SESSION['search'])){
+	//POSTあるからセッション要らない気がする
 	$key = $_SESSION['search'];
 	$namae = mb_convert_encoding("%$key%", "sjis", "auto");
 	$sql = "select * from profiles where name like :name";
