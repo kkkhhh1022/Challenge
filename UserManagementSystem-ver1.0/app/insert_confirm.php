@@ -8,6 +8,7 @@
 </head>
   <body>
     <?php
+    session_start();
     if(!empty($_POST['name']) && !empty($_POST['year']) && !empty($_POST['type']) 
             && !empty($_POST['tell']) && !empty($_POST['comment']) && $_POST['year']!='----' && $_POST['month']!='--' && $_POST['day']!='--'){
 //回答2.生年月日フォームデフォルトのハイフンでない場合に分岐する処理を追加        
@@ -19,15 +20,12 @@
         $post_comment = $_POST['comment'];
 
         //セッション情報に格納
-        session_start();
         $_SESSION['name'] = $post_name;
         $_SESSION['birthday'] = $post_birthday;
-        $_SESSION['year'] = $_POST['year'];
-        $_SESSION['month'] = $_POST['month'];
-        $_SESSION['day'] = $_POST['day'];
         $_SESSION['type'] = $post_type;
         $_SESSION['tell'] = $post_tell;
         $_SESSION['comment'] = $post_comment;
+        
     ?>
 
         <h1>登録確認画面</h1><br>
@@ -41,9 +39,17 @@
 
         <form action="<?php echo INSERT_RESULT ?>" method="POST">
           <input type="submit" name="yes" value="はい">
+          <input type="hidden" name="access" value="t">
         </form>
         <form action="<?php echo INSERT ?>" method="POST">
             <input type="submit" name="no" value="登録画面に戻る">
+            <input type="hidden" name="day" value="<?php echo $_POST['day']; ?>">
+            <input type="hidden" name="year" value="<?php echo $_POST['year']; ?>">
+            <input type="hidden" name="month" value="<?php echo $_POST['month']; ?>">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="comment" value="<?php echo $_POST['comment']; ?>">
+            <input type="hidden" name="tell" value="<?php echo $_POST['tell']; ?>">
+            <input type="hidden" name="type" value="<?php echo $_POST['type']; ?>">
         </form>
         
     <?php }else{
@@ -69,6 +75,13 @@
         再度入力を行ってください
         <form action="<?php echo INSERT ?>" method="POST">
             <input type="submit" name="no" value="登録画面に戻る">
+            <input type="hidden" name="day" value="<?php echo $_POST['day']; ?>">
+            <input type="hidden" name="year" value="<?php echo $_POST['year']; ?>">
+            <input type="hidden" name="month" value="<?php echo $_POST['month']; ?>">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="comment" value="<?php echo $_POST['comment']; ?>">
+            <input type="hidden" name="tell" value="<?php echo $_POST['tell']; ?>">
+            <input type="hidden" name="type" value="<?php echo $_POST['type']; ?>">
         </form>
     <?php }?>
 </body>
