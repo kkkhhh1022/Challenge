@@ -8,7 +8,27 @@
 </head>
   <body>
     <?php
-    session_start();
+session_start();
+$_SESSION['name'] = $_POST['name'];
+$_SESSION['year'] = $_POST['year'];
+$_SESSION['month'] = $_POST['month'];
+$_SESSION['day'] = $_POST['day'];
+$_SESSION['type'] = $_POST['type'];
+$_SESSION['tell'] = $_POST['tell'];
+$_SESSION['comment'] = $_POST['comment'];
+
+    if(($_POST['month']==2 && $_POST['day']>=29)
+    or($_POST['year']%4==0 && $_POST['month']==2 && $_POST['day']>=30)
+    or(($_POST['month']==4 or $_POST['month']==6 or $_POST['month']==9 or $_POST['month']==11) && $_POST['day']==31)){
+    	echo '存在しない日付です'."<br/>";?>
+    <form action="<?php echo INSERT ?>" method="POST">
+        <input type="submit" name="no" value="登録画面に戻る">
+        
+    </form>
+    <?php die();
+    //うるう年などの排除	
+    }
+
     if(!empty($_POST['name']) && !empty($_POST['year']) && !empty($_POST['type']) 
             && !empty($_POST['tell']) && !empty($_POST['comment']) && $_POST['year']!='----' && $_POST['month']!='--' && $_POST['day']!='--'){
 //回答2.生年月日フォームデフォルトのハイフンでない場合に分岐する処理を追加        
@@ -20,11 +40,7 @@
         $post_comment = $_POST['comment'];
 
         //セッション情報に格納
-        $_SESSION['name'] = $post_name;
         $_SESSION['birthday'] = $post_birthday;
-        $_SESSION['type'] = $post_type;
-        $_SESSION['tell'] = $post_tell;
-        $_SESSION['comment'] = $post_comment;
         
     ?>
 
@@ -43,13 +59,7 @@
         </form>
         <form action="<?php echo INSERT ?>" method="POST">
             <input type="submit" name="no" value="登録画面に戻る">
-            <input type="hidden" name="day" value="<?php echo $_POST['day']; ?>">
-            <input type="hidden" name="year" value="<?php echo $_POST['year']; ?>">
-            <input type="hidden" name="month" value="<?php echo $_POST['month']; ?>">
-            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
-            <input type="hidden" name="comment" value="<?php echo $_POST['comment']; ?>">
-            <input type="hidden" name="tell" value="<?php echo $_POST['tell']; ?>">
-            <input type="hidden" name="type" value="<?php echo $_POST['type']; ?>">
+
         </form>
         
     <?php }else{
@@ -71,17 +81,11 @@
         }
 //回答3 不足している入力項目を出力?>
         <h1>入力項目が不完全です</h1><br>
-        <?php echo "$str"?>の不足<br>
+        <?php echo "$str<br/>"?>の不足<br>
         再度入力を行ってください
         <form action="<?php echo INSERT ?>" method="POST">
             <input type="submit" name="no" value="登録画面に戻る">
-            <input type="hidden" name="day" value="<?php echo $_POST['day']; ?>">
-            <input type="hidden" name="year" value="<?php echo $_POST['year']; ?>">
-            <input type="hidden" name="month" value="<?php echo $_POST['month']; ?>">
-            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
-            <input type="hidden" name="comment" value="<?php echo $_POST['comment']; ?>">
-            <input type="hidden" name="tell" value="<?php echo $_POST['tell']; ?>">
-            <input type="hidden" name="type" value="<?php echo $_POST['type']; ?>">
+            
         </form>
     <?php }?>
 </body>

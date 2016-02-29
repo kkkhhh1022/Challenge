@@ -1,4 +1,4 @@
-<?php require_once '../common/defineUtil.php'; ?>
+﻿<?php require_once '../common/defineUtil.php'; ?>
 <?php require_once '../common/scriptUtil.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -34,16 +34,16 @@ session_start();?>
         <?php
         for($i = 1; $i<=31; $i++){ ?>
         <option value="<?php echo $i; ?>"><?php echo $i;?></option>
-        <?php } ?><!--SESSIONの値の有無で分岐を作るとアクセス初回の参照でエラーが出たのでPOSTを使うことにした-->
+        <?php } ?><!--課題4.SESSIONを利用した初期値に修正-->
     </select>日
     <br><br>
 
     種別:
     <br>
-    <input type="radio" name="type" value="エンジニア" <?php if(isset($_POST['type'])){if($_POST['type']=='エンジニア'){echo 'checked';}}?>>エンジニア<br>
-    <input type="radio" name="type" value="営業" <?php if(isset($_POST['type'])){if($_POST['type']=='営業'){echo 'checked';}}?>>営業<br>
-    <input type="radio" name="type" value="その他" <?php if(isset($_POST['type'])){if($_POST['type']=='その他'){echo 'checked';}}?>>その他<br>
-    <br><!-- 各ボタンとPOSTの値が一致するボタンにchecked -->
+    <input type="radio" name="type" value="エンジニア" <?php if(isset($_SESSION['type'])){if($_SESSION['type']=='エンジニア'){echo 'checked';}}?>>エンジニア<br>
+    <input type="radio" name="type" value="営業" <?php if(isset($_SESSION['type'])){if($_SESSION['type']=='営業'){echo 'checked';}}?>>営業<br>
+    <input type="radio" name="type" value="その他" <?php if(isset($_SESSION['type'])){if($_SESSION['type']=='その他'){echo 'checked';}}?>>その他<br>
+    <br><!-- SESSIONを用いた初期値に修正 -->
     
     電話番号:
     <input type="text" name="tell" value=<?php keep_val('tell','');?>>
