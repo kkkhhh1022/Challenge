@@ -8,10 +8,12 @@ require_once '../common/defineUtil.php';
  //回答1.<a href>内が正しくTOPページが参照されるような定数に修正
  
   function keep_val($key,$str){
-  	if(isset($_POST["$key"])){
-  		echo $_POST["$key"];
+  	if(!empty($_SESSION["$key"])){
+  		echo $_SESSION["$key"];
   	}else{
   		echo "$str";
   	} 
   }
- //渡したキー名のPOSTに値があれば表示する関数
+ //渡したキー名のSESSIONに値があれば表示する関数
+ 
+  

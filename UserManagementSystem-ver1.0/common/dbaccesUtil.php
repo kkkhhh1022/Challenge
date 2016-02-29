@@ -3,7 +3,7 @@
 //DBへの接続用を行う。成功ならPDOオブジェクトを、失敗なら中断、メッセージの表示を行う
 function connect2MySQL($name_val,$birthday_val,$tell_val,$type_val,$comment_val){
     try{
-        $pdo = new PDO('mysql:host=localhost;dbname=challenge_db;charset=utf8','wakasa','sora2525');
+        $pdo = new PDO('mysql:host=localhost;dbname=challenge_db;charset=utf8','ユーザー','パス');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //回答8.ファイル一元化に伴いreturn $pdoを削除
         $insert_sql = "INSERT INTO user_t(name,birthday,tell,type,comment,newDate)"
