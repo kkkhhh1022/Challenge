@@ -23,9 +23,18 @@ if(isset($_POST['access'])!='t'){
     $type = $_SESSION['type'];
     $comment = $_SESSION['comment'];
 
+    if($_SESSION['type']=='エンジニア'){
+    	$type_num = 1;
+    }elseif($_SESSION['type']=='営業'){
+    	$type_num = 2;
+    }elseif($_SESSION['type']=='その他'){
+    	$type_num = 3;
+    }
+    //種別を数字に変換してDB上へ管理する処理
+    
     //db接続を確立
-    $insert_db = connect2MySQL($name,$birthday,$tell,$type,$comment);
-
+    $insert_db = connect2MySQL($name,$birthday,$tell,$type_num,$comment);
+    
 	echo 
 	'<h1>登録結果画面</h1><br>'.
     '名前:'.$name.'<br>'.
