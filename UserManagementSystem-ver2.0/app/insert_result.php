@@ -10,11 +10,11 @@
 </head>
     <body>
     <?php
+    session_chk();
     if(!isset($_POST['mode']) or !$_POST['mode']=="RESULT"){//issetを用いて不正なアクセスの際Noticeが出ないようにした
         echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
     }else{
         
-        session_start();
         $name = $_SESSION['name'];
         //date型にするために1桁の月日を2桁にフォーマットしてから格納
         $birthday = $_SESSION['year'].'-'.sprintf('%02d',$_SESSION['month']).'-'.sprintf('%02d',$_SESSION['day']);
@@ -41,6 +41,7 @@
         }
     }
     echo return_top(); 
+    logout_s();
     ?>
     </body>
 </html>

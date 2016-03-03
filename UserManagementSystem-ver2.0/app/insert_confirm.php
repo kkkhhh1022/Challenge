@@ -9,12 +9,11 @@
 </head>
   <body>
     <?php
+    session_chk();
     //入力画面から「確認画面へ」ボタンを押した場合のみ処理を行う
     if(!isset($_POST['mode']) or !$_POST['mode']=="CONFIRM"){//issetを用いて不正なアクセスの際にNoticeが出ないようにした
         echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
     }else{
-        
-        session_start();
         
         //ポストの存在チェックとセッションに値を格納しつつ、連想配列にポストされた値を格納
         $confirm_values = array(
@@ -26,6 +25,20 @@
                                 'tell' =>bind_p2s('tell'),
                                 'comment' =>bind_p2s('comment'));
         
+        if(($_POST['month']==2 && $_POST['day']>=29)
+        	or($_POST['year']%4==0 && $_POST['month']==2 && $_POST['day']>=30)
+        	or(($_POST['month']==4 or $_POST['month']==6 or $_POST['month']==9 or $_POST['month']==11) && $_POST['day']==31)){
+        		echo '存在しない日付です。もう一度ページを移動してください'."<br/>".return_top();?>
+            	<form action="<?php echo INSERT ?>" method="POST">
+            	<input type="hidden" name="mode" value="REINPUT" >
+            	<input type="submit" name="no" value="登録画面に戻る">        
+            	</form>
+            	<?php
+            	logout_s();
+            	die();
+            	//うるう年などの判別	
+        }
+            	
         //1つでも未入力項目があったら表示しない
         if(!in_array(null,$confirm_values, true)){
             ?>        

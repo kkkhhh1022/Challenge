@@ -7,7 +7,8 @@
       <title>登録画面</title>
 </head>
 <body>
-    <?php session_start(); ?>
+    <?php 
+    session_chk();?>
     <form action="<?php echo INSERT_CONFIRM ?>" method="POST">
                 
         名前:

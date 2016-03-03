@@ -12,13 +12,14 @@ require_once '../common/dbaccesUtil.php';
 </head>
   <body>
     <?php
+    session_chk();
     if((!isset($_GET['id']) && !isset($_POST['mode'])) or
     		(!isset($_GET['id'])&&(!isset($_POST['mode']) or !$_POST['mode']=="DETAIL"))){
     	echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
     	//$_GETの指定が無く、かつ、削除変更画面への遷移を踏まえていない場合
     	//または、$_GETの指定は無いが、$_POST['mode']に値はある場合に、$_POST['mode']の値が"DETAILE"でない場合
     }else{
-		session_start();
+		
     	if(isset($_GET['id'])){
     		$result = profile_detail($_GET['id']);
     		//エラーが発生しなければ表示を行う

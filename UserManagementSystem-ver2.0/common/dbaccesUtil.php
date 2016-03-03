@@ -3,7 +3,7 @@
 //DBへの接続を行う。成功ならPDOオブジェクトを、失敗なら中断、メッセージの表示を行う
 function connect2MySQL(){
     try{
-        $pdo = new PDO('mysql:host=localhost;dbname=challenge_db;charset=utf8','wakasa','sora2525');
+        $pdo = new PDO('mysql:host=localhost;dbname=challenge_db;charset=utf8','ユーザー','パス');
         //SQL実行時のエラーをtry-catchで取得できるように設定
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
@@ -164,41 +164,7 @@ function delete_profile($id){
     }
     return null;
 }
-/*
-function comma_add_chk($key,$flag){
-	if($flag == true){
-		$str .= ',';
-	}
-	$str = " $key = :$key";
-	return $str;
-}
-//すでに文字列が連結されているかを判別してカンマを付与して返す
 
-function update_profile($id,$name,$birthday,$type,$tell,$comment){
-	$update_db = connect2MySQL();
-	$flag = false;
-	$update_sql = "UPDATE user_t SET";
-	if(isset($name)){
-		$update_sql .= comma_add_chk(name,$flag);
-		$flag = true;
-	}
-	if(isset($birthday)){
-		$update_sql .= comma_add_chk(birthday, $flag);
-		$flag = true;
-	}
-	if(isset($type)){
-		$update_sql .= comma_add_chk(type, $flag);
-		$flag = true;
-	}
-	if(isset($tell)){
-		$update_sql .= comma_add_chk(tell, $flag);
-		$flag = true;
-	}
-	if(isset($comment)){
-		$update_sql .= comma_add_chk(comment, $flag);
-		$flag = true;
-	}
-*/
 function update_profile($id,$name,$birthday,$type,$tell,$comment){
 
 	$update_db = connect2MySQL();

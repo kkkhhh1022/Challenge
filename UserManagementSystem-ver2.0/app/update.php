@@ -26,6 +26,7 @@ require_once '../common/dbaccesUtil.php';
     	$year = date('Y',$birth_stamp);
     	$month = date('n',$birth_stamp);
     	$day = date('j',$birth_stamp);
+    	//birthdayの値を年月日に分割
     	?>
     	名前:
     	<input type="text" name="name" value="<?php echo $result[0]['name']; ?>">
@@ -70,7 +71,8 @@ require_once '../common/dbaccesUtil.php';
     	自己紹介文
     		<br>
     		<textarea name="comment" rows=10 cols=50 style="resize:none" wrap="hard"><?php echo $result[0]['comment']; ?></textarea><br><br>
-
+		<!-- result_detail.phpからデータを取得し初期値に設定 -->
+		
 		<input type="hidden" name="id"  value="<?php echo $_POST['id'];?>">
     	<input type="hidden" name="mode"  value="RESULT">
     	<input type="submit" name="btnSubmit" value="以上の内容で更新を行う">

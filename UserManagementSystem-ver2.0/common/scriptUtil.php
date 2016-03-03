@@ -53,3 +53,29 @@ function bind_p2s($name){
         return null;
     }
 }
+
+//ページの遷移がセッション有効期限を過ぎているかどうか判別
+function session_chk(){
+	$period_time = 180;
+	session_start();
+	if(!empty($_SESSION['last_access'])){
+		if((mktime() - $_SESSION['last_access']) > $period_time){
+			echo 'セッション有効期限切れです。もう一度トップページからやり直してください'."<br/>".return_top();
+			logout_s();
+			exit;
+		}else{
+			$_SESSION['last_access']=mktime();
+		}
+	}else{
+		$_SESSION['last_access']=mktime();
+	}
+}
+//セッションのリセット処理
+function logout_s(){
+	session_unset();
+	if (isset($_COOKIE['PHPSESSID'])) {
+		setcookie('PHPSESSID', '', time() - 1800, '/');
+	}
+	session_destroy();
+}
+

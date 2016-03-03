@@ -11,6 +11,7 @@ require_once '../common/dbaccesUtil.php';
 </head>
   <body>
     <?php
+    session_chk();
     if(!isset($_POST['mode']) or !$_POST['mode']=="DELETE"){//issetを用いて不正なアクセスの際Noticeが出ないようにした
     	echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
     }else{

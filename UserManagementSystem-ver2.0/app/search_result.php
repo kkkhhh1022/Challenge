@@ -10,6 +10,7 @@ require_once '../common/dbaccesUtil.php';
       <title>検索結果画面</title>
 </head>
     <body>
+    <?php session_chk(); ?>
         <h1>検索結果</h1>
         <table border=1>
             <tr>
